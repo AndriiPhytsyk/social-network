@@ -1,0 +1,28 @@
+
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+
+      <mat-select #langSelect class="text_uppercase" (change)="translate.use(langSelect.value)" name="" id="">
+        <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}
+        </mat-option>
+      </mat-select>
+
+      <mat-card-header>
+        <mat-card-title>{{'Логін' | translate}}</mat-card-title>
+      </mat-card-header>
+
+      <form class="example-form">
+        <mat-card-content>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="{{'Ім'я користувача' | translate}}">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="{{'Пароль' | translate}}">
+          </mat-form-field>
+        </mat-card-content>
+        <button mat-stroked-button color="accent" class="btn-block">{{'Login' | translate}}</button>
+      </form>
+    </mat-card>
+  </div>

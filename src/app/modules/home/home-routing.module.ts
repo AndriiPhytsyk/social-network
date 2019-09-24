@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import {Routes, RouterModule, CanActivate} from '@angular/router';
 
-import {HomeComponent} from "./home.component";
 import {Injectable} from "@angular/compiler/src/core";
-import {AuthGuard} from "../guards/auth.guard";
+import {AuthGuard} from "../../guards/auth.guard";
+import {HomeComponent} from './home.component';
 
 
 const routes: Routes = [
