@@ -1,91 +1,3 @@
-<main class="">
-  <section class="user-profile">
-    <mat-card>
-      <mat-card-title>{{userInfo.name+" "+userInfo.lastname}}</mat-card-title>
-      <mat-card-content>
-        <div class="d-flex justify-content-center">
-          <img src="../../../../assets/images/avatar.png" class="image-circle" height="106" width="106"/>
-        </div>
-      </mat-card-content>
-      <button type="button" class="btn btn-info my-3" (click)="showInfoInputs()">Add info</button>
-      <ng-container *ngIf="isInputsShown">
-        <form [formGroup]="userInfoForm" (ngSubmit)="onSubmit()">
-          <div class="form-group" [ngClass]="{'has-error': true}">
-            <label for="exampleInputEmail1">Ім`я</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter name"
-                   formControlName="name" [value]="userInfo.name">
-            <div *ngIf="userInfoForm.get('name').invalid && userInfoForm.get('name').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('name')['errors']['required']">Name is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputLastName1">Прізвище</label>
-            <input type="text" class="form-control" id="exampleInputLastName1" placeholder="Last name"
-                   formControlName="lastname" [value]="userInfo.lastname">
-            <div *ngIf="userInfoForm.get('lastname').invalid && userInfoForm.get('lastname').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('lastname')['errors']['required']">Name is required</div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="exampleInputEmail">Емейл</label>
-            <input type="text" class="form-control" id="exampleInputEmail" placeholder="Email" formControlName="email" [value]="userInfo.email">
-            <div *ngIf="userInfoForm.get('email').invalid && userInfoForm.get('email').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('email')['errors']['required']">Email is required</div>
-              <div *ngIf="userInfoForm.get('email')['errors']['email']">Input correct email</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputAddress">Країна</label>
-            <input type="text" class="form-control" id="exampleInputCity" placeholder="Country"
-                   formControlName="country" [value]="userInfo.country">
-            <div *ngIf="userInfoForm.get('country').invalid && userInfoForm.get('country').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('country')['errors']['required']">Country is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputAddress">Місто</label>
-            <input type="text" class="form-control" id="exampleInputAddress" placeholder="City"
-                   formControlName="city" [value]="userInfo.city">
-            <div *ngIf="userInfoForm.get('city').invalid && userInfoForm.get('city').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('city')['errors']['required']">Address is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputAge">Age</label>
-              <div class="input-group">
-                <input type="number" class="form-control" id="exampleInputAge" placeholder="age"
-                       formControlName="age" [value]="userInfo.age">
-              </div>
-            <div *ngIf="userInfoForm.get('age').invalid && userInfoForm.get('age').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('age')['errors']['required']">Age is required</div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputDescription">Description</label>
-              <div class="input-group">
-                <input type="text" class="form-control" id="exampleInputDescription" placeholder="description"
-                       formControlName="description" [value]="userInfo.description">
-              </div>
-            <div *ngIf="userInfoForm.get('description').invalid && userInfoForm.get('description').touched" class="alert alert-danger">
-              <div *ngIf="userInfoForm.get('description')['errors']['required']">Description is required</div>
-            </div>
-          </div>
-
-
-          <div class="btn-group my-2 d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary mx-2">Submit</button>
-            <button type="button" class="btn btn-danger" (click)="hideInputs()">Cancel</button>
-          </div>
-
-        </form>
-      </ng-container>
-    </mat-card>
-
-  </section>
-
-</main>
-
 <div class="container">
   <div class="row my-2">
     <div class="col-lg-8 order-lg-2">
@@ -100,34 +12,10 @@
           <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
         </li>
       </ul>
+
       <div class="tab-content py-4">
         <div class="tab-pane active" id="profile">
-          <h5 class="mb-3">{{userInfo.name+" "+userInfo.lastname}}</h5>
-          <div class="row">
-            <div class="col-md-6">
-              <h6>About</h6>
-              <p>
-                {{userInfo.description}}
-              </p>
-              <h6>Email</h6>
-              <p>
-                {{userInfo.email}}
-              </p>
-              <h6>Country</h6>
-              <p>
-                {{userInfo.country}}
-              </p>
-              <h6>City</h6>
-              <p>
-                {{userInfo.city}}
-              </p>
-              <h6>Age</h6>
-              <p>
-                {{userInfo.age}}
-              </p>
-            </div>
-          </div>
-          <!--/row-->
+          <app-user-info></app-user-info>
         </div>
         <div class="tab-pane" id="messages">
           <div class="alert alert-info alert-dismissable">
@@ -164,93 +52,7 @@
           </table>
         </div>
         <div class="tab-pane" id="edit">
-          <form role="form">
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">First name</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="Jane">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="Bishop">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Email</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="email" value="email@gmail.com">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Company</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Website</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="url" value="">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Address</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="" placeholder="Street">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"></label>
-              <div class="col-lg-6">
-                <input class="form-control" type="text" value="" placeholder="City">
-              </div>
-              <div class="col-lg-3">
-                <input class="form-control" type="text" value="" placeholder="State">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Time Zone</label>
-              <div class="col-lg-9">
-                <select id="user_time_zone" class="form-control" size="0">
-                  <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                  <option value="Alaska">(GMT-09:00) Alaska</option>
-                  <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp; Canada)</option>
-                  <option value="Arizona">(GMT-07:00) Arizona</option>
-                  <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                  <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                  <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                  <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Username</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="text" value="janeuser">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Password</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="password" value="11111122333">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-              <div class="col-lg-9">
-                <input class="form-control" type="password" value="11111122333">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-lg-3 col-form-label form-control-label"></label>
-              <div class="col-lg-9">
-                <input type="reset" class="btn btn-secondary" value="Cancel">
-                <input type="button" class="btn btn-primary" value="Save Changes">
-              </div>
-            </div>
-          </form>
+          <app-edit-profile userInfo="userInfo"></app-edit-profile>
         </div>
       </div>
     </div>
