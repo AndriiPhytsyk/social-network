@@ -1,0 +1,22 @@
+main {
+  display: flex;
+  margin: 40px 0 0 40px;
+}
+
+.user-profile {
+  mat-card-title {
+    text-align: center;
+  }
+  width: 25%;
+  .mat-card {
+    background: white;
+    color: black;
+    width: 100%;
+  }
+}
+
+.image-circle {
+  border-radius: 50%;
+}
+
+
