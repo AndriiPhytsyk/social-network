@@ -14,4 +14,5 @@ export class AppComponent {
 
     translate.use(browserLang.match(/en|ua/) ? browserLang : 'ua');
   }
+
 }

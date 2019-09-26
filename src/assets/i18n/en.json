@@ -2,6 +2,38 @@
   "Привіт":"HELLO",
   "Логін": "Login",
   "Ім'я користувача": "Username",
-  "Пароль": "Password"
+  "Пароль": "Password",
+  "Пароль є обов'язковим": "Password is required",
+  "Пароль повинен бути мінімум 8 симлолів": "Password must be at least 8 characters",
+  "Емейл є обов'язковим": "Email is required",
+  "Введіть коректний емейл": "Input correct email",
+  "Реєстрація": "Registration",
+  "Ввійти": "Sign In",
+
+  "Ім'я є обов'язковим": "Name is required",
+  "Ім'я": "Name",
+  "Прізвище": "Last name",
+  "Прізвище є обов'язковим": "Last name is required",
+  "Емейл": "Email",
+  "Зареєструватись": "Sign up",
+
+  "Країна": "Country",
+  "Поле є обов'язковим для заповнення": "This field is required",
+  "Місто": "City",
+  "Вік": "Age",
+  "Про себе": "About yourself",
+  "Опис": "Description",
+  "Редагувати": "Edit",
+  "Електронна пошта": "Email"
+
+
+
+
+
+
+
+
+
+
 
 }

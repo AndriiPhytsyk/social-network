@@ -8,7 +8,7 @@ import {Component, Input, OnInit} from '@angular/core';
 
 export class UserInfoComponent implements OnInit {
 
-  @Input() userInfo
+  @Input() userInfo;
  constructor() { }
 
  ngOnInit() { }

@@ -2,13 +2,13 @@
   <form role="form" [formGroup]="userInfoForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
       <div class="col-sm-7">
-        <label for="exampleInputFirstName">Ім'я</label>
-        <input type="text" class="form-control" id="exampleInputFirstName" placeholder="First name"
+        <label for="exampleInputFirstName">{{'Ім\'я' | translate}}</label>
+        <input type="text" class="form-control" id="exampleInputFirstName" placeholder="{{'Ім\'я' | translate}}"
                formControlName="name" [value]="userInfo.name">
       </div>
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('name').invalid && userInfoForm.get('name').touched">
         <small class="text-danger">
-          Name is required
+          {{'Ім\'я є обов\'язковим' | translate}}
         </small>
       </div>
       <!--<div *ngIf="userInfoForm.get('name').invalid && userInfoForm.get('name').touched"-->
@@ -18,70 +18,70 @@
     </div>
     <div class="form-group row">
       <div class="col-sm-7">
-        <label for="exampleInputLastName1">Прізвище</label>
-        <input type="text" class="form-control" id="exampleInputLastName1" placeholder="Last name"
+        <label for="exampleInputLastName1">{{'Прізвище' | translate}}</label>
+        <input type="text" class="form-control" id="exampleInputLastName1" placeholder="{{'Прізвище' | translate}}"
                formControlName="lastname" [value]="userInfo.lastname">
       </div>
 
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('lastname').invalid && userInfoForm.get('lastname').touched">
         <small class="text-danger">
-          Lastname is required
+          {{'Прізвище є обов\'язковим' | translate}}
         </small>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-7">
-        <label for="exampleInputCountry">Country</label>
-        <input type="text" class="form-control" id="exampleInputCountry" placeholder="Country" formControlName="country"
+        <label for="exampleInputCountry">{{'Країна' | translate}}</label>
+        <input type="text" class="form-control" id="exampleInputCountry" placeholder="{{'Країна' | translate}}" formControlName="country"
                [value]="userInfo.country">
       </div>
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('country').invalid && userInfoForm.get('country').touched">
         <small class="text-danger">
-          Country is required
+          {{'Поле є обов\'язковим для заповнення' | translate}}
         </small>
       </div>
 
     </div>
     <div class="form-group row">
       <div class="col-sm-7">
-        <label for="exampleInputCity">City</label>
-        <input type="text" class="form-control has-error" id="exampleInputCity" placeholder="Country" formControlName="city"
+        <label for="exampleInputCity">{{'Місто' | translate}}</label>
+        <input type="text" class="form-control has-error" id="exampleInputCity" placeholder="{{'Країна' | translate}}" formControlName="city"
                [value]="userInfo.city">
       </div>
 
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('city').invalid && userInfoForm.get('city').touched">
         <small class="text-danger">
-          City is required
+          {{'Поле є обов\'язковим для заповнення' | translate}}
         </small>
       </div>
     </div>
 
     <div class="form-group row">
       <div class="col-sm-7">
-        <label for="exampleInputAge">Age</label>
-        <input type="text" class="form-control" id="exampleInputAge" placeholder="Age" formControlName="age"
+        <label for="exampleInputAge">{{'Вік' | translate}}</label>
+        <input type="text" class="form-control" id="exampleInputAge" placeholder="{{'Вік' | translate}}" formControlName="age"
                [value]="userInfo.age">
       </div>
 
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('age').invalid && userInfoForm.get('age').touched">
         <small class="text-danger">
-          Age is required
+          {{'Поле є обов\'язковим для заповнення' | translate}}
         </small>
       </div>
     </div>
     <div class="form-group row">
       <div class="col-sm-7">
-        <label for="exampleInputDescription">Description</label>
-        <input type="text" class="form-control" id="exampleInputDescription" placeholder="Description" formControlName="description"
+        <label for="exampleInputDescription">{{'Про себе' | translate}}</label>
+        <input type="text" class="form-control" id="exampleInputDescription" placeholder="{{'Опис' | translate}}" formControlName="description"
                [value]="userInfo.description">
       </div>
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('description').invalid && userInfoForm.get('description').touched">
         <small class="text-danger">
-          Description is required
+          {{'Поле є обов\'язковим для заповнення' | translate}}
         </small>
       </div>
     </div>
-      <button type="submit" class="btn btn-primary" >Edit</button>
+      <button type="submit" class="btn btn-primary" >{{'Редагувати' | translate}}</button>
 
   </form>
 </div>

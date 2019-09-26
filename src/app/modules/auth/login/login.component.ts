@@ -25,17 +25,12 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService,
     private translate: TranslateService
   ) {
-    translate.addLangs(["en", "ua"]);
-    translate.setDefaultLang('en');
-
-    let browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|ua/) ? browserLang : 'ua');
-
     // redirect to home if already logged in
     if (this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
+
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
