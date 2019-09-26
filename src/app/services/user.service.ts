@@ -10,18 +10,21 @@ import {Observable} from 'rxjs';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    getAll() {
-        return this.http.get<User[]>(`${GLOBAL.url}/users`);
-    }
+    // getAll() {
+    //     return this.http.get<User[]>(`${GLOBAL.url}/users`);
+    // }
 
     getById(id: number) {
         return this.http.get(`${GLOBAL.url}/users/${id}`);
     }
 
     register(user: any): Observable<any>{
-
       return this.http.post(`http://${GLOBAL.url}/auth/signup`, user)
+    }
 
+    editUserInfo(userInfo){
+      console.log("userInfo",userInfo)
+      return this.http.put(`http://${GLOBAL.url}/users/me`, userInfo)
     }
 
     // addUserInfo(user) {

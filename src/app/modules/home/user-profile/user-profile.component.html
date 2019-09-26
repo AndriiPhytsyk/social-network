@@ -1,68 +1,73 @@
-<div class="container">
-  <div class="row my-2">
-    <div class="col-lg-8 order-lg-2">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a href="" data-target="#profile" data-toggle="tab" class="nav-link active">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#messages" data-toggle="tab" class="nav-link">Messages</a>
-        </li>
-        <li class="nav-item">
-          <a href="" data-target="#edit" data-toggle="tab" class="nav-link">Edit</a>
-        </li>
-      </ul>
-
-      <div class="tab-content py-4">
-        <div class="tab-pane active" id="profile">
-          <app-user-info></app-user-info>
-        </div>
-        <div class="tab-pane" id="messages">
-          <div class="alert alert-info alert-dismissable">
-            <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this to show important messages to the user.
-          </div>
-          <table class="table table-hover table-striped">
-            <tbody>
-            <tr>
-              <td>
-                <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus.
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros.
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="tab-pane" id="edit">
-          <app-edit-profile userInfo="userInfo"></app-edit-profile>
-        </div>
+<div class="d-flex justify-content-start">
+  <div class="container">
+    <div class="row mt-5 justify-content-center">
+      <div class="col-lg-8 order-lg-2">
+        <ngb-tabset #t="ngbTabset">
+          <ngb-tab id="tab-profile" title="Profile">
+            <ng-template ngbTabContent>
+              <div class="tab-pane active my-4">
+                <app-user-info [userInfo]="userInfo"></app-user-info>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="tab-messages" title="Messages">
+            <ng-template ngbTabContent>
+              <div class="my-4">
+                <div class="alert alert-info alert-dismissable">
+                  <a class="panel-close close" data-dismiss="alert">×</a> This is an <strong>.alert</strong>. Use this
+                  to show
+                  important messages to the user.
+                </div>
+                <table class="table table-hover table-striped">
+                  <tbody>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest
+                      summary
+                      report from the..
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your
+                      account
+                      since that was..
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id
+                      dolor.
+                      Morbi venenatis lacinia rhoncus.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget
+                      luctus.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum
+                      tincidunt
+                      ullamcorper eros.
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="tab-edit" title="Edit">
+            <ng-template ngbTabContent>
+              <div class="my-4" >
+                <app-edit-profile [userInfo]="userInfo" (onUserInfoEdited)="userInfoEdited($event)" ></app-edit-profile>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
       </div>
-    </div>
-    <div class="col-lg-4 order-lg-1 text-center">
-      <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-      <h6 class="mt-2">Upload a different photo</h6>
-      <label class="custom-file">
-        <input type="file" id="file" class="custom-file-input">
-        <span class="custom-file-control">Choose file</span>
-      </label>
     </div>
   </div>
 </div>

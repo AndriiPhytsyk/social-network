@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../../../../services/user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,19 +8,21 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 })
 
 export class EditProfileComponent implements OnInit {
+
+  submitted = false;
   @Input() userInfo = {};
+  @Output() onUserInfoEdited = new EventEmitter();
 
   userInfoForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {
     console.log(this.userInfo);
   }
 
   ngOnInit() {
     this.userInfoForm = this.formBuilder.group({
-      name: new FormControl(null, [Validators.required]),
+      'name': new FormControl(null, [Validators.required]),
       'lastname': new FormControl(null, [Validators.required]),
-      'email': new FormControl(null, [Validators.required, Validators.email]),
       'city': new FormControl(null, [Validators.required]),
       'country': new FormControl(null, [Validators.required]),
       'age': new FormControl(null, [Validators.required]),
@@ -28,8 +31,18 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const {name, lastname, phone, address, email, birthDate} = this.userInfoForm.value;
-    console.log(this.userInfoForm.value)
+    const {name, lastname, city, country, age, description} = this.userInfoForm.value;
+
+    this.userService.editUserInfo({name, lastname, city, country, age, description})
+      .subscribe(userInfo => {
+        if(userInfo['success']){
+          this.onUserInfoEdited.emit({name, lastname, city, country, age, description});
+        }
+        console.log(444,userInfo)
+
+        this.submitted = true;
+
+      });
   }
 
 }
