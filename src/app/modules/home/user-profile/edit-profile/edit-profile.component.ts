@@ -23,7 +23,7 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
     console.log(22, this.userInfo);
     this.userInfoForm = this.formBuilder.group({
-      name: new FormControl("qwe", [Validators.required]),
+      name: new FormControl(null, [Validators.required]),
       lastname: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       country: new FormControl(null, [Validators.required]),
@@ -34,13 +34,13 @@ export class EditProfileComponent implements OnInit {
 
   onSubmit() {
     const {name, lastname, city, country, age, description} = this.userInfoForm.value;
+    const userInfo = new UserInfo(name, lastname, city, country, age, description);
 
-    this.userService.editUserInfo({name, lastname, city, country, age, description})
+    this.userService.editUserInfo(userInfo)
       .subscribe(userInfo => {
         if (userInfo['success']) {
-          this.onUserInfoEdited.emit({name, lastname, city, country, age, description});
+          this.onUserInfoEdited.emit(userInfo);
         }
-        console.log(444,userInfo)
 
         this.submitted = true;
 

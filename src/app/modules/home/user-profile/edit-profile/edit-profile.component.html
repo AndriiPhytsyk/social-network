@@ -1,10 +1,10 @@
 <div class="tab-pane" id="edit">
   <form role="form" [formGroup]="userInfoForm" (ngSubmit)="onSubmit()">
     <div class="form-group row">
-      <div class="col-sm-7">
+      <div class="col-sm-9">
         <label for="exampleInputFirstName">{{'Ім\'я' | translate}}</label>
         <input type="text" class="form-control" id="exampleInputFirstName" placeholder="{{'Ім\'я' | translate}}"
-               formControlName="name" [value]="userInfo.name">
+               formControlName="name" [ngModel]="userInfo.name">
       </div>
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('name').invalid && userInfoForm.get('name').touched">
         <small class="text-danger">
@@ -20,7 +20,7 @@
       <div class="col-sm-7">
         <label for="exampleInputLastName1">{{'Прізвище' | translate}}</label>
         <input type="text" class="form-control" id="exampleInputLastName1" placeholder="{{'Прізвище' | translate}}"
-               formControlName="lastname" [value]="userInfo.lastname">
+               formControlName="lastname" [ngModel]="userInfo.lastname">
       </div>
 
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('lastname').invalid && userInfoForm.get('lastname').touched">
@@ -33,7 +33,7 @@
       <div class="col-sm-7">
         <label for="exampleInputCountry">{{'Країна' | translate}}</label>
         <input type="text" class="form-control" id="exampleInputCountry" placeholder="{{'Країна' | translate}}" formControlName="country"
-               [value]="userInfo.country">
+               [ngModel]="userInfo.country">
       </div>
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('country').invalid && userInfoForm.get('country').touched">
         <small class="text-danger">
@@ -46,7 +46,7 @@
       <div class="col-sm-7">
         <label for="exampleInputCity">{{'Місто' | translate}}</label>
         <input type="text" class="form-control has-error" id="exampleInputCity" placeholder="{{'Країна' | translate}}" formControlName="city"
-               [value]="userInfo.city">
+               [ngModel]="userInfo.city">
       </div>
 
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('city').invalid && userInfoForm.get('city').touched">
@@ -60,7 +60,7 @@
       <div class="col-sm-7">
         <label for="exampleInputAge">{{'Вік' | translate}}</label>
         <input type="text" class="form-control" id="exampleInputAge" placeholder="{{'Вік' | translate}}" formControlName="age"
-               [value]="userInfo.age">
+               [ngModel]="userInfo.age">
       </div>
 
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('age').invalid && userInfoForm.get('age').touched">
@@ -73,7 +73,7 @@
       <div class="col-sm-7">
         <label for="exampleInputDescription">{{'Про себе' | translate}}</label>
         <input type="text" class="form-control" id="exampleInputDescription" placeholder="{{'Опис' | translate}}" formControlName="description"
-               [value]="userInfo.description">
+               [ngModel]="userInfo.description">
       </div>
       <div class="col-sm-3 d-flex align-items-center" *ngIf="userInfoForm.get('description').invalid && userInfoForm.get('description').touched">
         <small class="text-danger">

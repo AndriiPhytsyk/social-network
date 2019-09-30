@@ -10,12 +10,13 @@ import {Observable} from 'rxjs';
 export class UserService {
     constructor(private http: HttpClient) { }
 
-    // getAll() {
-    //     return this.http.get<User[]>(`${GLOBAL.url}/users`);
-    // }
+   getAllUsers(){
+     return this.http.get(`http://${GLOBAL.url}/users`);
+   }
 
-    getById(id: number) {
-        return this.http.get(`${GLOBAL.url}/users/${id}`);
+    getUserById(id) {
+      console.log('id',id)
+        return this.http.get(`http://${GLOBAL.url}/users/${id}`);
     }
 
     register(user: any): Observable<any>{
@@ -25,6 +26,10 @@ export class UserService {
     editUserInfo(userInfo){
       console.log("userInfo",userInfo)
       return this.http.put(`http://${GLOBAL.url}/users/me`, userInfo)
+    }
+
+    uploadPhoto(image) {
+      return this.http.put(`http://${GLOBAL.url}/users/updatePhoto`, {image})
     }
 
     // addUserInfo(user) {

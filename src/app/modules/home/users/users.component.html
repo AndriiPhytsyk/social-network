@@ -1,0 +1,7 @@
+<ul class="list-group">
+  <li *ngFor="let user of users" class="list-group-item list-group-item-action" style="cursor: pointer" [routerLink]="['/users', user.id]">
+    <span>
+      <img src="../../../../assets/images/avatar.png" class="img-responsive" style="max-height: 50px"/>
+    </span>
+    {{user.name + " " + user.lastname + " " + user.id}}</li>
+</ul>

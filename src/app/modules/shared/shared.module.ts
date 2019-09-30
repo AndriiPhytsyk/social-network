@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {UsersService} from './services/users.service';
 import {HttpClientModule} from '@angular/common/http';
+import {ImageCropperModule} from 'ngx-image-cropper';
 // import {ConfirmationDialogService} from './services/confirmation-dialog.service';
 // import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
 
@@ -20,7 +21,9 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     NgbModule,
     FormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    ImageCropperModule
+
   ],
 
   providers: [UsersService],

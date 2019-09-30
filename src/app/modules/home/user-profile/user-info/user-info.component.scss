@@ -1,0 +1,13 @@
+image-cropper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+image-cropper {
+  padding: 0;
+}
+
+image-cropper  img {
+  width: 100%;
+}

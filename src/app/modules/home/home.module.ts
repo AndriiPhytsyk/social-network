@@ -8,13 +8,17 @@ import {SharedModule} from '../shared/shared.module';
 import {UserProfileComponent} from './user-profile/user-profile.component';
 import {EditProfileComponent} from './user-profile/edit-profile/edit-profile.component';
 import {UserInfoComponent} from './user-profile/user-info/user-info.component';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './users/user/user.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     EditProfileComponent,
     UserInfoComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UsersComponent,
+    UserComponent
   ],
 
   imports: [

@@ -1,20 +1,36 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Social-network</a>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <a class="navbar-brand" [routerLink]="['/users/me']">Social-network</a>
+  <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
     <ul class="navbar-nav dropdown justify-content " ngbDropdown>
+      <li class="d-flex align-items-center">
+        <mat-select #langSelect class="text_uppercase" (selectionChange)="translate.use(langSelect.value)" name=""
+                    id="">
+          <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}
+          </mat-option>
+        </mat-select>
+      </li>
       <li>
-      <a class="nav-link dropdown-toggle c-pointer" id="navbarDropdown" role="button" ngbDropdownToggle>
-        <i class="fa fa-user"></i>
-      </a>
-      <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu >
-        <a (click)="deleteUser()" class="c-pointer" ngbDropdownItem ><i class="fa fa-trash" aria-hidden="true"></i>
-          Delete user</a>
-        <a (click)="logOut()" class="c-pointer" ngbDropdownItem ><i class="fa fa-sign-out" aria-hidden="true"></i>
-          Logout</a>
-      </div>
+        <a class="nav-link dropdown-toggle c-pointer" id="navbarDropdown" role="button" ngbDropdownToggle>
+          <i class="fa fa-user"></i>
+        </a>
+        <div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+          <a (click)="deleteUser()" class="c-pointer" ngbDropdownItem><i class="fa fa-trash" aria-hidden="true"></i>
+            Delete user</a>
+          <a (click)="logOut()" class="c-pointer" ngbDropdownItem><i class="fa fa-sign-out" aria-hidden="true"></i>
+            Logout</a>
+        </div>
       </li>
     </ul>
   </div>
 </nav>
 
-<app-user-profile></app-user-profile>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-8">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="col-sm-4">
+      <app-users></app-users>
+    </div>
+  </div>
+</div>

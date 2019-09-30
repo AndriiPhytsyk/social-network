@@ -1,11 +1,15 @@
 <h5 class="mb-5 text-center">{{userInfo.name+" "+userInfo.lastname}}</h5>
 <div class="row">
   <div class="col-6 text-center" >
-    <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+    <img src="{{userImg}}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
     <h6 class="mt-2">Upload a different photo</h6>
-    <label class="custom-file">
-      <input type="file" id="file" class="custom-file-input">
+    <label class="custom-file"  *ngIf="!isImageLoaded">
+      <input type="file" id="file" class="custom-file-input" (change)="fileChangeEvent($event)">
       <span class="custom-file-control">Choose file</span>
+    </label>
+    <label class="custom-file" *ngIf="isImageLoaded">
+      <input type="button" class="custom-file-input" (change)="uploadFile($event)">
+      <span class="custom-file-control">Upload file</span>
     </label>
   </div>
   <div class="col-6">
@@ -30,7 +34,24 @@
       {{userInfo.age}}
     </p>
   </div>
-
 </div>
+
+<ng-template #cropImageDialog>
+  <div class="modal-content">
+    <image-cropper
+      [imageChangedEvent]="imageChangedEvent"
+      [resizeToWidth]="150"
+      [resizeToHeight]="150"
+      (imageCropped)="imageCropped($event)"
+      (imageLoaded)="imageLoaded()"
+      (cropperReady)="cropperReady()"
+      (loadImageFailed)="loadImageFailed()"
+    ></image-cropper>
+    <div class="btn-group d-flex justify-content-center">
+      <button mat-button color="gray" tabindex="-1" (click)="uploadImage()">Save</button>
+      <button mat-button color="primary" (click)="closeConfirmDialog()">Cancel</button>
+    </div>
+  </div>
+</ng-template>
 
 

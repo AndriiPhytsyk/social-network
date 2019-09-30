@@ -28,6 +28,7 @@
     "angular-font-awesome": "^3.1.2",
     "bootstrap": "^4.3.1",
     "font-awesome": "^4.7.0",
+    "ngx-image-cropper": "^2.0.0",
     "rxjs": "~6.4.0",
     "rxjs-compat": "^6.5.3",
     "tslib": "^1.10.0",
