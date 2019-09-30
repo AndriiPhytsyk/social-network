@@ -12,7 +12,6 @@ import {UserInfoComponent} from './user-profile/user-info/user-info.component';
 @NgModule({
   declarations: [
     HomeComponent,
-    UserProfileComponent,
     EditProfileComponent,
     UserInfoComponent,
     UserProfileComponent
@@ -23,8 +22,7 @@ import {UserInfoComponent} from './user-profile/user-info/user-info.component';
     HomeRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule,
-
+    SharedModule
   ],
   providers: []
 })

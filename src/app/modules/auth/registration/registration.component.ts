@@ -52,7 +52,6 @@ export class RegistrationComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          debugger;
           console.log(user);
           // this.alertService.success('Registration successful', true);
           this.router.navigate(['/login']);

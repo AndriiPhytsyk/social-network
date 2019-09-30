@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 
 // import {User} from '../models/user';
 import {GLOBAL} from './global';
+import {Router} from '@angular/router';
 
 
 @Injectable({providedIn: 'root'})
@@ -13,7 +14,7 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -28,7 +29,6 @@ export class AuthenticationService {
         console.log(user)
         // login successful if there's a jwt token in the response
         if (user && user.tokens) {
-          debugger;
           // store user details and jwt token in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
@@ -39,10 +39,13 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.http.get(`${GLOBAL.url}/auth/logout`);
+    console.log(2222);
+    // return this.http.get(`${GLOBAL.url}/auth/logout`);
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    this.router.navigate(['/login']);
+    // this.currentUserSubject.next(null);
   }
 }
 

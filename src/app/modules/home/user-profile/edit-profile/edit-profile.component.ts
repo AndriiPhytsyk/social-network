@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../../services/user.service';
+import {UserInfo} from '../../../shared/models/userInfo';
 
 @Component({
   selector: 'app-edit-profile',
@@ -10,23 +11,24 @@ import {UserService} from '../../../../services/user.service';
 export class EditProfileComponent implements OnInit {
 
   submitted = false;
-  @Input() userInfo = {};
-  @Output() onUserInfoEdited = new EventEmitter();
+  @Input() userInfo: UserInfo;
+  @Output() onUserInfoEdited = new EventEmitter<UserInfo>();
 
   userInfoForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
-    console.log(this.userInfo);
+    console.log(11, this.userInfo);
   }
 
   ngOnInit() {
+    console.log(22, this.userInfo);
     this.userInfoForm = this.formBuilder.group({
-      'name': new FormControl(null, [Validators.required]),
-      'lastname': new FormControl(null, [Validators.required]),
-      'city': new FormControl(null, [Validators.required]),
-      'country': new FormControl(null, [Validators.required]),
-      'age': new FormControl(null, [Validators.required]),
-      'description': new FormControl(null, [Validators.required])
+      name: new FormControl("qwe", [Validators.required]),
+      lastname: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      country: new FormControl(null, [Validators.required]),
+      age: new FormControl(null, [Validators.required]),
+      description: new FormControl(null, [Validators.required])
     });
   }
 
@@ -35,7 +37,7 @@ export class EditProfileComponent implements OnInit {
 
     this.userService.editUserInfo({name, lastname, city, country, age, description})
       .subscribe(userInfo => {
-        if(userInfo['success']){
+        if (userInfo['success']) {
           this.onUserInfoEdited.emit({name, lastname, city, country, age, description});
         }
         console.log(444,userInfo)

@@ -7,6 +7,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {UsersService} from './services/users.service';
 import {HttpClientModule} from '@angular/common/http';
+// import {ConfirmationDialogService} from './services/confirmation-dialog.service';
+// import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
+
 
 @NgModule({
   exports: [
@@ -20,6 +23,7 @@ import {HttpClientModule} from '@angular/common/http';
     AngularFontAwesomeModule
   ],
 
-  providers: [UsersService ],
+  providers: [UsersService],
+
 })
 export class SharedModule { }
