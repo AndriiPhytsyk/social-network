@@ -42,8 +42,7 @@ export class AuthenticationService {
     console.log(2222);
     // return this.http.get(`${GLOBAL.url}/auth/logout`);
     // remove user from local storage to log user out
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
     // this.currentUserSubject.next(null);
   }

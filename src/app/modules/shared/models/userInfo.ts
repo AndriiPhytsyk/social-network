@@ -4,9 +4,8 @@ export class UserInfo {
     public lastname: string,
     public country: string,
     public city: string,
-    public age: string,
-    public description: string,
-    public email?: string
+    public age: number,
+    public description: string
   ) {
   }
 }

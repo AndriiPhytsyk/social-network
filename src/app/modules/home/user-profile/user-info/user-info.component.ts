@@ -1,7 +1,5 @@
 
 import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import { MatDialog, MatDialogRef, MatSidenav } from '@angular/material';
-import {ImageCroppedEvent} from 'ngx-image-cropper';
 import {UserService} from '../../../../services/user.service';
 
 
@@ -15,8 +13,8 @@ import {UserService} from '../../../../services/user.service';
 export class UserInfoComponent implements OnInit {
 
  selectedFile = null;
-  @ViewChild('cropImageDialog', {static: false}) cropImageDialog: TemplateRef<any>;
-  dialogRef: MatDialogRef<any>;
+  // @ViewChild('cropImageDialog', {static: false}) cropImageDialog: TemplateRef<any>;
+  // dialogRef: MatDialogRef<any>;
   @Input() userInfo;
 
   imageChangedEvent: any = '';
@@ -25,64 +23,40 @@ export class UserInfoComponent implements OnInit {
   isCropperReady = false;
   isImageUploaded = false;
 
-  userImg = '//placehold.it/150';
 
- constructor(public dialog: MatDialog, private userService: UserService) { }
+ constructor(private userService: UserService) { }
 
  ngOnInit() { }
-
-  closeConfirmDialog(): void {
-    this.dialogRef.close();
-  }
 
   fileChangeEvent(event: any): void {
     this.selectedFile = <File>event.target.files[0];
     if (this.selectedFile.name.match(/.(jpg|jpeg|png)$/i)) {
-      this.openImageCropDialog();
-      this.imageChangedEvent = event;
+      this.isImageLoaded = true;
+      console.log(333,this.selectedFile);
+      this.selectedFile = <File>event.target.files[0];
+
+      const reader = new FileReader();
+
+      reader.readAsDataURL(this.selectedFile);
+      reader.onload = (_event) => {
+        console.log('reader.result',reader.result);
+        this.userInfo['image'] = reader.result;
+      }
     } else {
       // need to change
       alert('not image');
     }
   }
-  imageCropped(event: ImageCroppedEvent) {
-    this.croppedImage = event.base64;
-  }
-  imageLoaded() {
-    this.isImageLoaded = true;
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
-    this.isCropperReady = true;
-  }
-  loadImageFailed() {
-    // show message
-  }
 
   uploadImage() {
-    console.log(123,this.croppedImage);
-    this.userImg = this.croppedImage;
-    this.isImageUploaded = true;
-
     const fd = new FormData();
     fd.append('image', this.selectedFile, this.selectedFile.name);
     console.log( 'this.selectedFile', this.selectedFile)
     this.userService.uploadPhoto(fd)
-      .subscribe(result => console.log('result',result))
-
-    this.closeConfirmDialog();
+      .subscribe(result => {
+        this.isImageLoaded = false;
+      })
   }
-
-  openImageCropDialog(): void {
-    this.dialogRef = this.dialog.open(this.cropImageDialog, {
-      width: '300px',
-      position: { top: '225px' },
-      disableClose: true
-      // panelClass: 'background-white'
-    });
-  }
-
 
 
 }

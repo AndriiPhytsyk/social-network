@@ -7,10 +7,10 @@
     <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="{{'Ім\'я' | translate}}" formControlName="firstname">
+          <input matInput placeholder="{{'Ім\'я' | translate}}" formControlName="name">
         </mat-form-field>
-        <div *ngIf="registerForm.get('firstname').invalid && registerForm.get('firstname').touched" class="alert alert-danger">
-          <div *ngIf="registerForm.get('firstname')['errors']['required']">{{'Ім\'я є обов\'язковим' | translate }}</div>
+        <div *ngIf="registerForm.get('name').invalid && registerForm.get('name').touched" class="alert alert-danger">
+          <div *ngIf="registerForm.get('name')['errors']['required']">{{'Ім\'я є обов\'язковим' | translate }}</div>
         </div>
 
         <mat-form-field class="example-full-width">
@@ -26,6 +26,10 @@
         <div *ngIf="registerForm.get('email').invalid && registerForm.get('email').touched" class="alert alert-danger">
           <div *ngIf="registerForm.get('email')['errors']['required']">{{'Емейл є обов\'язковим' | translate}}</div>
           <div *ngIf="registerForm.get('email')['errors']['email']">{{'Введіть коректний емейл' | translate}}</div>
+        </div>
+
+        <div *ngIf="submitted && forbiddenEmail" class="alert alert-danger">
+            Емейл уже використовується
         </div>
 
         <mat-form-field class="example-full-width">

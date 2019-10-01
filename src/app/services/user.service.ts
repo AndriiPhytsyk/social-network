@@ -14,7 +14,11 @@ export class UserService {
      return this.http.get(`http://${GLOBAL.url}/users`);
    }
 
-    getUserById(id) {
+   deleteUser() {
+     return this.http.delete(`http://${GLOBAL.url}/users/me`)
+   }
+
+    getUserById(id){
       console.log('id',id)
         return this.http.get(`http://${GLOBAL.url}/users/${id}`);
     }
@@ -29,7 +33,7 @@ export class UserService {
     }
 
     uploadPhoto(image) {
-      return this.http.put(`http://${GLOBAL.url}/users/updatePhoto`, {image})
+      return this.http.put(`http://${GLOBAL.url}/users/updatePhoto`, image)
     }
 
     // addUserInfo(user) {

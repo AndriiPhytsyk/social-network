@@ -8,11 +8,14 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {UsersService} from './services/users.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageCropperModule} from 'ngx-image-cropper';
-// import {ConfirmationDialogService} from './services/confirmation-dialog.service';
-// import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogService} from './services/confirmation-dialog.service';
+import {ConfirmationDialogComponent} from './components/confirmation-dialog.component';
+
 
 
 @NgModule({
+  declarations: [ ConfirmationDialogComponent ],
+
   exports: [
     CommonModule,
     TranslateModule,
@@ -23,10 +26,9 @@ import {ImageCropperModule} from 'ngx-image-cropper';
     FormsModule,
     AngularFontAwesomeModule,
     ImageCropperModule
-
   ],
-
-  providers: [UsersService],
+  entryComponents: [ ConfirmationDialogComponent ],
+  providers: [ ConfirmationDialogService,UsersService ]
 
 })
 export class SharedModule { }

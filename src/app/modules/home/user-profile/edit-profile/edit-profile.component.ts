@@ -11,7 +11,7 @@ import {UserInfo} from '../../../shared/models/userInfo';
 export class EditProfileComponent implements OnInit {
 
   submitted = false;
-  @Input() userInfo: UserInfo;
+  @Input() userInfo;
   @Output() onUserInfoEdited = new EventEmitter<UserInfo>();
 
   userInfoForm: FormGroup;
@@ -33,12 +33,16 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    const {name, lastname, city, country, age, description} = this.userInfoForm.value;
+    let {name, lastname, city, country, age, description} = this.userInfoForm.value;
+    age = +age;
     const userInfo = new UserInfo(name, lastname, city, country, age, description);
 
     this.userService.editUserInfo(userInfo)
-      .subscribe(userInfo => {
-        if (userInfo['success']) {
+      .subscribe(result => {
+        debugger;
+        if (result['success']) {
+          // userInfo['image'] = '//placehold.it/150';
+          this.userInfo = userInfo;
           this.onUserInfoEdited.emit(userInfo);
         }
 

@@ -16,9 +16,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
-import {ImageCropperModule} from 'ngx-image-cropper';
-// import {ConfirmationDialogService} from '../app/modules/shared/services/confirmation-dialog.service';
-// import {ConfirmationDialogComponent} from '../app/modules/shared/components/confirmation-dialog/confirmation-dialog.component';
+// import {ConfirmationDialogComponent} from './modules/shared/components/confirmation-dialog.component';
+// import {ConfirmationDialogService} from './modules/shared/services/confirmation-dialog.service';
+
+
 
 // AoT requires an exported function for factories
 
@@ -59,7 +60,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
 
     ],
-  // entryComponents: [ ConfirmationDialogComponent ],
+
 
   bootstrap: [AppComponent]
 })

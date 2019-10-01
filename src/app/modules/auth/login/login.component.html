@@ -1,6 +1,12 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
+
   <mat-card class="box">
+    <div
+      class="alert alert-{{message.type}}"
+      *ngIf="message.text"
+    >{{message.text}}
+    </div>
 
     <mat-select #langSelect class="text_uppercase" (selectionChange)="translate.use(langSelect.value)" name="" id="">
       <mat-option *ngFor="let lang of translate.getLangs()" [value]="lang">{{lang}}
@@ -26,7 +32,8 @@
         </mat-form-field>
         <div *ngIf="loginForm.get('password').invalid && loginForm.get('password').touched" class="alert alert-danger">
           <div *ngIf="loginForm.get('password')['errors']['required']">{{'Пароль є обов\'язковим' | translate}}</div>
-          <div *ngIf="loginForm.get('password')['errors']['minlength']">{{'Пароль повинен бути мінімум 8 симлолів' | translate}}</div>
+          <div *ngIf="loginForm.get('password')['errors']['minlength']">{{'Пароль повинен бути мінімум 8 симлолів' |  translate}}
+          </div>
         </div>
       </mat-card-content>
       <button mat-stroked-button color="accent" class="btn-block">{{'Ввійти' | translate}}</button>

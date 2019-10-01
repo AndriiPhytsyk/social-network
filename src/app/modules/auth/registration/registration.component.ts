@@ -14,7 +14,9 @@ import {AlertService} from '../../../services/alert.service';
 
 export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
+
   submitted = false;
+  forbiddenEmail = false;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -24,14 +26,15 @@ export class RegistrationComponent implements OnInit {
               private alertService: AlertService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['/']);
-    }
+    // if (this.authenticationService.currentUserValue) {
+    //   debugger;
+    //   this.router.navigate(['/users/me']);
+    // }
   }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
-      firstname: ['', Validators.required],
+      name: ['', Validators.required],
       lastname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
@@ -52,13 +55,19 @@ export class RegistrationComponent implements OnInit {
       .pipe(first())
       .subscribe(
         user => {
-          console.log(user);
           // this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          this.router.navigate(['/login'], {
+            queryParams: {
+              nowCanLogin: true
+            }
+          });
         },
         error => {
-          console.log('error',error)
-          this.alertService.error(error);
+          debugger;
+
+          if (error == 'Conflict') {
+            this.forbiddenEmail = true;
+          }
         });
   }
 

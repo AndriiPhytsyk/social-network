@@ -11,7 +11,8 @@ import {UserInfo} from '../../../shared/models/userInfo';
 })
 export class UserComponent implements OnInit, OnDestroy {
   private routeSub: Subscription;
-  userInfo: UserInfo;
+  userInfo: any;
+  isLoaded = false;
 
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
@@ -21,7 +22,8 @@ export class UserComponent implements OnInit, OnDestroy {
       this.userService.getUserById(id)
         .subscribe(userInfo=>{
         console.log(555,userInfo);
-        this.userInfo = userInfo['user'];
+        this.userInfo = userInfo;
+        this.isLoaded = true;
       })
     });
   }
