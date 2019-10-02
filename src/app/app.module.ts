@@ -16,6 +16,9 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ErrorInterceptor, JwtInterceptor} from './_helpers';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {AlertComponent} from './modules/shared/components/alert';
+import {AlertService} from './modules/shared/services/alert.service';
+// import {SharedModule} from './modules/shared/shared.module';
 // import {ConfirmationDialogComponent} from './modules/shared/components/confirmation-dialog.component';
 // import {ConfirmationDialogService} from './modules/shared/services/confirmation-dialog.service';
 
@@ -31,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    AlertComponent
 
   ],
   imports: [
@@ -45,6 +49,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
     NgbModule,
     AngularFontAwesomeModule,
+    // SharedModule,
 
     TranslateModule.forRoot({
       loader: {
@@ -58,7 +63,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-
+    AlertService
     ],
 
 

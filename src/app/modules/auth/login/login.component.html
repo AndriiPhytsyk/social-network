@@ -38,7 +38,10 @@
       </mat-card-content>
       <button mat-stroked-button color="accent" class="btn-block">{{'Ввійти' | translate}}</button>
     </form>
-    <a [routerLink]="['/registration']">{{'Реєстрація' | translate}}</a>
+    <div class="etc-login-form">
+      <p>forgot your password? <a  [routerLink]="['/forgot-password']">click here</a></p>
+      <p>new user? <a [routerLink]="['/registration']">create new account</a></p>
+    </div>
   </mat-card>
 
 </div>

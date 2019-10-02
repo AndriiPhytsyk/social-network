@@ -8,8 +8,10 @@ import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {UsersService} from './services/users.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ImageCropperModule} from 'ngx-image-cropper';
+import {ConfirmationDialogComponent} from './components/confirmation-dialog/confirmation-dialog.component';
 import {ConfirmationDialogService} from './services/confirmation-dialog.service';
-import {ConfirmationDialogComponent} from './components/confirmation-dialog.component';
+import {AlertComponent} from './components/alert';
+
 
 
 
@@ -25,9 +27,12 @@ import {ConfirmationDialogComponent} from './components/confirmation-dialog.comp
     NgbModule,
     FormsModule,
     AngularFontAwesomeModule,
-    ImageCropperModule
+    ImageCropperModule,
   ],
-  entryComponents: [ ConfirmationDialogComponent ],
+  imports: [
+    CommonModule],
+
+  entryComponents: [ ConfirmationDialogComponent],
   providers: [ ConfirmationDialogService,UsersService ]
 
 })

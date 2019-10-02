@@ -43,7 +43,9 @@
       </mat-card-content>
 
       <button [disabled]="registerForm.invalid" type="submit" mat-stroked-button color="accent" class="btn-block">{{'Зареєструватись' | translate}}</button>
-
     </form>
+    <div class="etc-login-form">
+      <p>already have an account? <a [routerLink]="['/login']">login here</a></p>
+    </div>
   </mat-card>
 </div>

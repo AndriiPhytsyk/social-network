@@ -3,7 +3,6 @@ import {TranslateService} from '@ngx-translate/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AuthenticationService} from '../../../services/authentication.service';
-import {AlertService} from '../../../services/alert.service';
 import {first} from 'rxjs/operators';
 import {InfoMessage} from '../../shared/models/info-message';
 
@@ -25,7 +24,6 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private alertService: AlertService,
     private translate: TranslateService
   ) {
     // redirect to home if already logged in
@@ -88,7 +86,6 @@ export class LoginComponent implements OnInit {
           this.showMessage('Не правильний логін або пароль', 'danger' )
 
           console.log(78, error);
-          this.alertService.error(error);
           this.loading = false;
         });
   }

@@ -10,9 +10,7 @@ import {EditProfileComponent} from './user-profile/edit-profile/edit-profile.com
 import {UserInfoComponent} from './user-profile/user-info/user-info.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
-// import {ConfirmationDialogComponent} from '../shared/components/confirmation-dialog.component';
-// import {ConfirmationDialogComponent} from '../shared/components/confirmation-dialog.component';
-// import {ConfirmationDialogService} from '../shared/services/confirmation-dialog.service';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +29,6 @@ import { UserComponent } from './users/user/user.component';
     ReactiveFormsModule,
     SharedModule
   ],
-  // providers: [ ConfirmationDialogService ],
-  // entryComponents: [ ConfirmationDialogComponent ]
+
 })
 export class HomeModule { }

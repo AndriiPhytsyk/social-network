@@ -5,10 +5,11 @@ import {catchError} from 'rxjs/operators';
 
 import {AuthenticationService} from '../services/authentication.service';
 import {Router} from '@angular/router';
+import {AlertService} from '../modules/shared/services/alert.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService, router: Router) {
+  constructor(private authenticationService: AuthenticationService, private alertService: AlertService) {
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -18,8 +19,8 @@ export class ErrorInterceptor implements HttpInterceptor {
         //   this.authenticationService.logout();
         //   location.reload(true);
       }
-      debugger;
       const error = err.error.message || err.statusText;
+      this.alertService.error('Шось пішло не так :)');
       return throwError(error);
     }))
   }

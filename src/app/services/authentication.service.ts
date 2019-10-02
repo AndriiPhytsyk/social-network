@@ -46,6 +46,13 @@ export class AuthenticationService {
     this.router.navigate(['/login']);
     // this.currentUserSubject.next(null);
   }
+
+  forgotPassword(email) {
+    debugger;
+      return this.http.post(`http://${GLOBAL.url}/auth/forgotPassword`, {email})
+  }
+
+
 }
 
 // import {Injectable} from '@angular/core';

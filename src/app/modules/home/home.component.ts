@@ -3,9 +3,9 @@ import {Component, OnInit} from '@angular/core';
 import {UsersService} from '../shared/services/users.service';
 import {AuthenticationService} from '../../services/authentication.service';
 import {TranslateService} from '@ngx-translate/core';
-import {ConfirmationDialogService} from '../shared/services/confirmation-dialog.service';
 import {UserService} from '../../services/user.service';
 import {Router} from '@angular/router';
+import {ConfirmationDialogService} from '../shared/services/confirmation-dialog.service';
 
 
 
