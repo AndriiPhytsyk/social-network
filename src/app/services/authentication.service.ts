@@ -52,6 +52,11 @@ export class AuthenticationService {
       return this.http.post(`http://${GLOBAL.url}/auth/forgotPassword`, {email})
   }
 
+  changePassword(password, token) {
+    debugger;
+    return this.http.post(`http://${GLOBAL.url}/auth/resetPassword`, {password, token})
+  }
+
 
 }
 

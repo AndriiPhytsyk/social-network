@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
       .subscribe((params: Params) => {
         if(params['nowCanLogin']) {
           this.showMessage('Введіть Ваш логін і пароль', 'success')
+        } else if((params['passwordChanged'])) {
+          this.showMessage('Пароль було успішно змінено', 'success')
         }
-      })
+      });
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]]
