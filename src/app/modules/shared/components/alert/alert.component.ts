@@ -16,7 +16,6 @@ export class AlertComponent {
     constructor(private alertService: AlertService) { }
 
     ngOnInit() {
-      debugger;
         this.alertService.getAlert(this.id).subscribe((alert: Alert) => {
             if (!alert.message) {
                 // clear alerts when an empty alert is received

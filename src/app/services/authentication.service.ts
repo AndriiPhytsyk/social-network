@@ -38,6 +38,20 @@ export class AuthenticationService {
       }));
   }
 
+  refreshToken(refreshToken) {
+    let headers = new Headers()
+    headers.append('Authorization', refreshToken);
+    return this.http.get(`http://${GLOBAL.url}/auth/token/refresh`, headers)
+      .pipe(map(user => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        debugger;
+        console.log(user)
+        console.log(777,user)
+        }
+      ))
+  }
+
   logout() {
     console.log(2222);
     // return this.http.get(`${GLOBAL.url}/auth/logout`);
@@ -49,7 +63,7 @@ export class AuthenticationService {
 
   forgotPassword(email) {
     debugger;
-      return this.http.post(`http://${GLOBAL.url}/auth/forgotPassword`, {email})
+    return this.http.post(`http://${GLOBAL.url}/auth/forgotPassword`, {email})
   }
 
   changePassword(password, token) {
