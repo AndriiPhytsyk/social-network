@@ -17,11 +17,9 @@ export class EditProfileComponent implements OnInit {
   userInfoForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
-    console.log(11, this.userInfo);
   }
 
   ngOnInit() {
-    console.log(22, this.userInfo);
     this.userInfoForm = this.formBuilder.group({
       name: new FormControl(null, [Validators.required]),
       lastname: new FormControl(null, [Validators.required]),
@@ -39,15 +37,12 @@ export class EditProfileComponent implements OnInit {
 
     this.userService.editUserInfo(userInfo)
       .subscribe(result => {
-        debugger;
         if (result['success']) {
           // userInfo['image'] = '//placehold.it/150';
           this.userInfo = userInfo;
           this.onUserInfoEdited.emit(userInfo);
         }
-
         this.submitted = true;
-
       });
   }
 

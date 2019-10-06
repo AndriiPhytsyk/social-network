@@ -10,6 +10,7 @@ import {EditProfileComponent} from './user-profile/edit-profile/edit-profile.com
 import {UserInfoComponent} from './user-profile/user-info/user-info.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
+import { UserMessagesComponent } from './user-profile/user-messages/user-messages.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { UserComponent } from './users/user/user.component';
     UserInfoComponent,
     UserProfileComponent,
     UsersComponent,
-    UserComponent
+    UserComponent,
+    UserMessagesComponent
   ],
 
   imports: [

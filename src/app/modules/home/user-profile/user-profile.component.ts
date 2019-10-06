@@ -17,15 +17,13 @@ export class UserProfileComponent implements OnInit {
   constructor( private usersService: UsersService ) {}
 
   ngOnInit() {
-    this.usersService.getUsersMe()
-      .subscribe(userInfo => {
-            console.log(userInfo);
-        this.userInfo = userInfo['user'];
-        console.log('userInfo', this.userInfo);
-      });
+    // this.usersService.getUsersMe()
+    //   .subscribe(userInfo => {
+    //     this.userInfo = userInfo['user'];
+    //   });
   }
 
-  userInfoEdited(updatedInfo){
+  userInfoEdited(updatedInfo) {
     this.userInfo = updatedInfo;
   }
 }

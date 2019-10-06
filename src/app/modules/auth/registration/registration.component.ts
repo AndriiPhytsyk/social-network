@@ -13,10 +13,8 @@ import {first} from 'rxjs/operators';
 
 export class RegistrationComponent implements OnInit {
   registerForm: FormGroup;
-
   submitted = false;
   forbiddenEmail = false;
-
 
   constructor(private formBuilder: FormBuilder,
               private router: Router,
@@ -41,14 +39,11 @@ export class RegistrationComponent implements OnInit {
 
 
   onSubmit() {
-    console.log(this.registerForm)
     this.submitted = true;
-
     // stop here if form is invalid
-    // if (this.registerForm.invalid) {
-    //   return;
-    // }
-
+    if (this.registerForm.invalid) {
+      return;
+    }
     return this.userService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(
@@ -61,8 +56,6 @@ export class RegistrationComponent implements OnInit {
           });
         },
         error => {
-          debugger;
-
           if (error == 'Conflict') {
             this.forbiddenEmail = true;
           }

@@ -5,7 +5,8 @@ import {AlertService} from '../../services/alert.service';
 
 @Component({
     selector: 'app-alert',
-    templateUrl: 'alert.component.html'
+    templateUrl: 'alert.component.html',
+    styleUrls: ['./alert.component.scss']
 })
 
 export class AlertComponent {
@@ -16,7 +17,6 @@ export class AlertComponent {
     constructor(private alertService: AlertService) { }
 
     ngOnInit() {
-      debugger;
         this.alertService.getAlert(this.id).subscribe((alert: Alert) => {
             if (!alert.message) {
                 // clear alerts when an empty alert is received
@@ -41,13 +41,13 @@ export class AlertComponent {
         // return css class based on alert type
         switch (alert.type) {
             case AlertType.Success:
-                return 'alert alert-success col-sm-2 mx-auto';
+                return 'alert alert-success col-sm-2 mx-auto display-center';
             case AlertType.Error:
-                return 'alert alert-danger  col-sm-2 mx-auto';
+                return 'alert alert-danger  col-sm-2 mx-auto display-center';
             case AlertType.Info:
-                return 'alert alert-info col-sm-2 mx-auto';
+                return 'alert alert-info col-sm-2 mx-auto display-center';
             case AlertType.Warning:
-                return 'alert alert-warning col-sm-2 mx-auto';
+                return 'alert alert-warning col-sm-2 mx-auto display-center';
         }
     }
 }

@@ -1,37 +1,27 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {BehaviorSubject, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
-// import {User} from '../models/user';
 import {GLOBAL} from './global';
 import {Router} from '@angular/router';
+import {Tokens} from '../models/tokens';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
 
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  private readonly JWT_TOKEN = 'accessToken';
+  private readonly REFRESH_TOKEN = 'refreshToken';
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser')));
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
-
-  public get currentUserValue() {
-    return this.currentUserSubject.value;
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   login(login: string, password: string) {
     return this.http.post<any>(`http://${GLOBAL.url}/auth/login`, {login, password})
       .pipe(map(user => {
-        console.log(user)
         // login successful if there's a jwt token in the response
         if (user && user.tokens) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
+          this.storeTokens(user.tokens);
         }
 
         return user;
@@ -39,22 +29,42 @@ export class AuthenticationService {
   }
 
   logout() {
-    console.log(2222);
-    // return this.http.get(`${GLOBAL.url}/auth/logout`);
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
     this.router.navigate(['/login']);
-    // this.currentUserSubject.next(null);
   }
 
   forgotPassword(email) {
-    debugger;
-      return this.http.post(`http://${GLOBAL.url}/auth/forgotPassword`, {email})
+      return this.http.post(`http://${GLOBAL.url}/auth/forgotPassword`, {email});
   }
 
   changePassword(password, token) {
-    debugger;
-    return this.http.post(`http://${GLOBAL.url}/auth/resetPassword`, {password, token})
+    return this.http.post(`http://${GLOBAL.url}/auth/resetPassword`, {password, token});
+  }
+
+  private storeTokens(tokens: Tokens) {
+    localStorage.setItem(this.JWT_TOKEN, tokens.accessToken);
+    localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
+  }
+
+  refreshToken() {
+    return this.http.post<any>(`http://${GLOBAL.url}/auth/token/refresh`, {
+      'refreshToken': this.getRefreshToken()
+    }).pipe(tap((tokens: Tokens) => {
+      this.storeAccessToken(tokens.accessToken);
+    }));
+  }
+
+  getAccessToken() {
+    return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  private getRefreshToken() {
+    return localStorage.getItem(this.REFRESH_TOKEN);
+  }
+
+  private storeAccessToken(accessToken: string) {
+    localStorage.setItem(this.JWT_TOKEN, accessToken);
   }
 
 

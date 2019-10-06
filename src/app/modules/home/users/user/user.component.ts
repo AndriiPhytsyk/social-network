@@ -20,11 +20,10 @@ export class UserComponent implements OnInit, OnDestroy {
     this.routeSub = this.route.params.subscribe(params => {
       const id = params['id'];
       this.userService.getUserById(id)
-        .subscribe(userInfo=>{
-        console.log(555,userInfo);
+        .subscribe(userInfo => {
         this.userInfo = userInfo;
         this.isLoaded = true;
-      })
+      });
     });
   }
 

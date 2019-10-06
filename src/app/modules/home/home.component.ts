@@ -26,12 +26,12 @@ export class HomeComponent  {
   public deleteUser() {
     this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to delete user ?')
       .then((confirmed) => {
-        if(confirmed) {
-          this.userService.deleteUser().subscribe(result=> {
+        if (confirmed) {
+          this.userService.deleteUser().subscribe(result => {
             if (result['success']) {
               this.router.navigate(['/login']);
             }
-          })
+          });
         }
       })
       .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
