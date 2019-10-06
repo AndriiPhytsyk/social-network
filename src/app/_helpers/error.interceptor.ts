@@ -19,9 +19,16 @@ export class ErrorInterceptor implements HttpInterceptor {
         //   this.authenticationService.logout();
         //   location.reload(true);
       }
+<<<<<<< HEAD
       const error = err.error.message || err.statusText;
       this.alertService.error('Шось пішло не так');
       return throwError(error);
     }));
+=======
+      // const error = err.error.message || err.statusText;
+      this.alertService.error('Шось пішло не так :)');
+      return throwError(err);
+    }))
+>>>>>>> f5c25b13de2729e4c1bfb6e08f26b00761aa3b44
   }
 }
